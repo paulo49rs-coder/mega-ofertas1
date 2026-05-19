@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="As melhores promoções da Amazon e Mercado Livre em um só lugar. TVs, celulares e câmeras com os melhores preços.">
+<title>Mega Ofertas | Amazon & Mercado Livre</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #FF6200;
+    --primary-dark: #c94d00;
+    --secondary: #FFE000;
+    --ml-yellow: #FFE600;
+    --amz-orange: #FF9900;
+    --dark: #111111;
+    --dark2: #1a1a1a;
+    --dark3: #242424;
+    --surface: #2a2a2a;
+    --surface2: #333333;
+    --text: #f5f5f5;
+    --text-muted: #aaaaaa;
+    --border: rgba(255,255,255,0.08);
+    --radius: 14px;
+    --radius-sm: 8px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(17,17,17,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: var(--text);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .logo span {
+    color: var(--primary);
+  }
+
+  .logo-badge {
+    font-size: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    background: var(--primary);
+    color: white;
+    padding: 2px 7px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 0.25rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 20px;
+    transition: all 0.2s;
+  }
+
+  .nav-links a:hover {
+    color: var(--text);
+    background: var(--surface);
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #1a0a00 0%, #111111 50%, #001a0a 100%);
+    padding: 5rem 2rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255,98,0,0.12) 0%, transparent 70%);
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    line-height: 1.1;
+    margin-bottom: 1.2rem;
+    position: relative;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--primary);
+  }
+
+  .hero p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    max-width: 520px;
+    margin: 0 auto 2.5rem;
+  }
+
+  .hero-badges {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .store-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 40px;
+    font-size: 14px;
+    font-weight: 600;
+    border: 1.5px solid;
+  }
+
+  .badge-amazon {
+    background: rgba(255,153,0,0.1);
+    border-color: rgba(255,153,0,0.4);
+    color: #ffb733;
+  }
+
+  .badge-ml {
+    background: rgba(255,230,0,0.08);
+    border-color: rgba(255,230,0,0.35);
+    color: #FFE600;
+  }
+
+  .badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* CATEGORY NAV */
+  .cat-nav {
+    background: var(--dark2);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .cat-nav::-webkit-scrollbar { display: none; }
+
+  .cat-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 1rem 1.5rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .cat-btn:hover, .cat-btn.active {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+  }
+
+  .cat-icon {
+    font-size: 18px;
+  }
+
+  /* SECTION */
+  .section {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.8rem;
+  }
+
+  .section-title span {
+    color: var(--primary);
+  }
+
+  .section-sub {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-top: 4px;
+  }
+
+  /* PRODUCT GRID */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .product-card {
+    background: var(--dark2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .product-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255,98,0,0.3);
+    box-shadow: 0 12px 40px rgba(255,98,0,0.1);
+  }
+
+  .card-img-wrap {
+    position: relative;
+    background: var(--dark3);
+    aspect-ratio: 16/10;
+    overflow: hidden;
+  }
+
+  .card-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+    filter: brightness(0.95);
+  }
+
+  .product-card:hover .card-img-wrap img {
+    transform: scale(1.04);
+  }
+
+  .store-tag {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+  }
+
+  .store-tag.amz {
+    background: rgba(255,153,0,0.9);
+    color: #1a0e00;
+  }
+
+  .store-tag.ml {
+    background: rgba(255,230,0,0.92);
+    color: #1a1500;
+  }
+
+  .rating-tag {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.7);
+    color: #ffcc44;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .card-body {
+    padding: 1.1rem 1.2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-brand {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--primary);
+    margin-bottom: 4px;
+  }
+
+  .card-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.35;
+    margin-bottom: 0.5rem;
+    flex: 1;
+  }
+
+  .card-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+
+  .card-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 1rem;
+  }
+
+  .card-price {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: var(--text);
+  }
+
+  .card-price-old {
+    font-size: 13px;
+    color: var(--text-muted);
+    text-decoration: line-through;
+  }
+
+  .card-discount {
+    font-size: 12px;
+    font-weight: 600;
+    background: rgba(255,98,0,0.2);
+    color: #ff8c42;
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-left: auto;
+  }
+
+  .card-actions {
+    display: flex;
+    gap: 8px;
+  }
+
+  .btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-amazon {
+    background: #FF9900;
+    color: #111;
+  }
+
+  .btn-amazon:hover {
+    background: #e68a00;
+    transform: scale(1.02);
+  }
+
+  .btn-ml {
+    background: #FFE600;
+    color: #111;
+  }
+
+  .btn-ml:hover {
+    background: #e6cf00;
+    transform: scale(1.02);
+  }
+
+  .btn-outline {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    flex: 0 0 auto;
+    padding: 10px 12px;
+  }
+
+  .btn-outline:hover {
+    border-color: rgba(255,255,255,0.25);
+    color: var(--text);
+  }
+
+  /* DIVIDER */
+  .section-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0 2rem;
+  }
+
+  /* INFO BANNER */
+  .info-banner {
+    background: var(--dark2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .info-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+
+  .info-icon {
+    font-size: 22px;
+    color: var(--primary);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark2);
+    border-top: 1px solid var(--border);
+    padding: 3rem 2rem 2rem;
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.4rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-logo span { color: var(--primary); }
+
+  .footer-disclaimer {
+    font-size: 13px;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto 1.5rem;
+    line-height: 1.7;
+  }
+
+  .footer-stores {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .store-pill {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .pill-amz { background: rgba(255,153,0,0.1); color: #ffb733; }
+  .pill-ml { background: rgba(255,230,0,0.08); color: #cdb800; }
+
+  /* FADE IN ANIMATION */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .product-card {
+    animation: fadeUp 0.5s ease forwards;
+    opacity: 0;
+  }
+
+  .product-card:nth-child(1) { animation-delay: 0.05s; }
+  .product-card:nth-child(2) { animation-delay: 0.1s; }
+  .product-card:nth-child(3) { animation-delay: 0.15s; }
+  .product-card:nth-child(4) { animation-delay: 0.2s; }
+
+  @media (max-width: 640px) {
+    nav { padding: 0 1rem; }
+    .nav-links { display: none; }
+    .hero { padding: 3rem 1rem 2.5rem; }
+    .section { padding: 2.5rem 1rem; }
+    .cat-nav { padding: 0 1rem; }
+    .info-banner { gap: 1.2rem; padding: 1.2rem 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#">
+    Mega<span>Ofertas</span>
+    <span class="logo-badge">AFILIADO</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#tvs">TVs</a></li>
+    <li><a href="#celulares">Celulares</a></li>
+    <li><a href="#cameras">Câmeras</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>As melhores ofertas da<br><em>Amazon & Mercado Livre</em></h1>
+  <p>Curadoria especial de TVs, celulares e câmeras com os melhores preços — atualizada toda semana.</p>
+  <div class="hero-badges">
+    <div class="store-badge badge-amazon">
+      <span class="badge-dot"></span>
+      Amazon Brasil
+    </div>
+    <div class="store-badge badge-ml">
+      <span class="badge-dot"></span>
+      Mercado Livre
+    </div>
+  </div>
+</section>
+
+<!-- INFO BANNER -->
+<div class="info-banner">
+  <div class="info-item">
+    <span class="info-icon">✦</span>
+    <span>Preços verificados semanalmente</span>
+  </div>
+  <div class="info-item">
+    <span class="info-icon">⚡</span>
+    <span>Ofertas com frete grátis</span>
+  </div>
+  <div class="info-item">
+    <span class="info-icon">🛡</span>
+    <span>Compra segura via plataformas oficiais</span>
+  </div>
+</div>
+
+<!-- CAT NAV -->
+<div class="cat-nav">
+  <a class="cat-btn" href="#tvs"><span class="cat-icon">📺</span> TVs</a>
+  <a class="cat-btn" href="#celulares"><span class="cat-icon">📱</span> Celulares</a>
+  <a class="cat-btn" href="#cameras"><span class="cat-icon">📷</span> Câmeras</a>
+</div>
+
+<!-- ===================== TVs ===================== -->
+<section class="section" id="tvs">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title"><span>📺</span> Ofertas em TVs</h2>
+      <p class="section-sub">Smart TVs e televisores com melhor custo-benefício</p>
+    </div>
+  </div>
+  <div class="product-grid">
+
+    <div class="product-card">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=500&h=320&fit=crop" alt="Smart TV 50 polegadas 4K">
+        <span class="store-tag amz">Amazon</span>
+        <span class="rating-tag">★ 4.6</span>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Smart TV</div>
+        <div class="card-title">Smart TV 50" 4K UHD com HDR e Wi-Fi</div>
+        <div class="card-desc">Resolução 4K, HDR10, HDMI 2.1, Wi-Fi integrado — ideal para filmes e streaming.</div>
+        <div class="card-price-row">
+          <span class="card-price">R$ 2.399</span>
+          <span class="card-price-old">R$ 2.899</span>
+          <span class="card-discount">-17%</span>
+        </div>
+        <div class="card-actions">
+          <a class="btn btn-amazon" href="https://www.amazon.com.br/s?k=smart+tv+50+4k&tag=paulo49rs0d-20" target="_blank" rel="noopener sponsored">🛒 Amazon</a>
+          <a class="btn btn-ml" href="https://www.mercadolivre.com.br/ofertas?matt_tool=sipa4126780&q=smart+tv+50+4k" target="_blank" rel="noopener sponsored">Ver ML</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1567690187548-f07b1d7bf5a9?w=500&h=320&fit=crop" alt="TV QLED 55 polegadas">
+        <span class="store-tag amz">Amazon</span>
+        <span class="rating-tag">★ 4.8</span>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">QLED</div>
+        <div class="card-title">TV QLED 55" 120Hz com Dolby Vision e Atmos</div>
+        <div class="card-desc">Painel QLED de 120Hz, Dolby Vision e Dolby Atmos — experiência cinema em casa.</div>
+        <div class="card-price-row">
+          <span class="card-price">R$ 3.799</span>
+          <span class="card-price-old">R$ 4.499</span>
+          <span class="card-discount">-16%</span>
+        </div>
+        <div class="card-actions">
+          <a class="btn btn-amazon" href="https://www.amazon.com.br/s?k=tv+qled+55+120hz&tag=paulo49rs0d-20" target="_blank" rel="noopener sponsored">🛒 Amazon</a>
+          <a class="btn btn-ml" href="https://www.mercadolivre.com.br/ofertas?matt_tool=sipa4126780&q=tv+qled+55+120hz" target="_blank" rel="noopener sponsored">Ver ML</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1461151304267-38535e780c79?w=500&h=320&fit=crop" alt="TV OLED 65 polegadas">
+        <span class="store-tag ml">Mercado Livre</span>
+        <span class="rating-tag">★ 4.9</span>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">OLED Premium</div>
+        <div class="card-title">TV OLED 65" 4K com Assistente de Voz</div>
+        <div class="card-desc">Painel OLED com preto perfeito, contraste infinito e assistente de voz integrado.</div>
+        <div class="card-price-row">
+          <span class="card-price">R$ 6.499</span>
+          <span class="card-price-old">R$ 7.999</span>
+          <span class="card-discount">-19%</span>
+        </div>
+        <div class="card-actions">
+          <a class="btn btn-amazon" href="https://www.amazon.com.br/s?k=tv+oled+65+4k&tag=paulo49rs0d-20" target="_blank" rel="noopener sponsored">🛒 Amazon</a>
+          <a class="btn btn-ml" href="https://www.mercadolivre.com.br/ofertas?matt_tool=sipa4126780&q=tv+oled+65+4k" target="_blank" rel="noopener sponsored">Ver ML</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1558888401-3cc1de77652d?w=500&h=320&fit=crop" alt="Smart TV 43 polegadas Full HD">
+        <span class="store-tag ml">Mercado Livre</span>
+        <span class="rating-tag">★ 4.5</span>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Smart TV</div>
+        <div class="card-title">Smart TV 43" Full HD com Wi-Fi e Netflix</div>
+        <div class="card-desc">Ótima opção custo-benefício com Full HD, Wi-Fi integrado e apps de streaming.</div>
+        <div class="card-price-row">
+          <span class="card-price">R$ 1.899</span>
+          <span class="card-price-old">R$ 2.299</span>
+          <span class="card-discount">-17%</span>
+        </div>
+        <div class="card-actions">
+          <a class="btn btn-amazon" href="https://www.amazon.com.br/s?k=smart+tv+43+full+hd&tag=paulo49rs0d-20" target="_blank" rel="noopener sponsored">🛒 Amazon</a>
+          <a class="btn btn-ml" href="https://www.mercadolivre.com.br/ofertas?matt_tool=sipa4126780&q=smart+tv+43+full+hd" target="_blank" rel="noopener sponsored">Ver ML</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ===================== CELULARES ===================== -->
+<section class="section" id="celulares">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title"><span>📱</span> Ofertas em Celulares</h2>
+      <p class="section-sub">Smartphones das melhores marcas com desconto</p>
+    </div>
+  </div>
+  <div class="product-grid">
+
+    <div class="product-card">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500&h=320&fit=crop" alt="Smartphone 5G 256GB">
+        <span class="store-tag amz">Amazon</span>
+        <span class="rating-tag">★ 4.7</span>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Smartphone 5G</div>
+        <div class="card-title">Smartphone 5G 256GB Tela AMOLED 120Hz</div>
+        <div class="card-desc">5G, tela AMOLED de 120Hz, câmera de alta resolução e carregamento rápido de 67W.</div>
+        <div class="card-price-row">
+          <span class="card-price">R$ 2.999</span>
+          <span class="card-price-old">R$ 3.699</span>
+          <span class="card-discount">-19%</span>
+        </div>
+        <div class="card-actions">
+          <a class="btn btn-amazon" href="https://www.amazon.com.br/s?k=smartphone+5g+256gb+amoled&tag=paulo49rs0d-20" target="_blank" rel="noopener sponsored">🛒 Amazon</a>
+          <a class="btn btn-ml" href="https://www.mercadolivre.com.br/ofertas?matt_tool=sipa4126780&q=smartphone+5g+256gb+amoled" target="_blank" rel="noopener sponsored">Ver ML</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=500&h=320&fit=crop" alt="Celular câmera tripla">
+        <span class="store-tag ml">Mercado Livre</span>
+        <span class="rating-tag">★ 4.5</span>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Câmera Tripla</div>
+        <div class="card-title">Celular 128GB Câmera Tripla com NFC</div>
+        <div class="card-desc">Sistema de câmera tripla, NFC para pagamentos por aproximação e bateria de 5.000mAh.</div>
+        <div class="card-price-row">
+          <span class="card-price">R$ 1.499</span>
+          <span class="card-price-old">R$ 1.899</span>
+          <span class="card-discount">-21%</span>
+        </div>
+        <div class="card-actions">
+          <a class="btn btn-amazon" href="https://www.amazon.com.br/s?k=celular+128gb+camera+tripla&tag=paulo49rs0d-20" target="_blank" rel="noopener sponsored">🛒 Amazon</a>
+          <a class="btn btn-ml" href="https://www.mercadolivre.com.br/ofertas?matt_tool=sipa4126780&q=celular+128gb+camera+tripla" target="_blank" rel="noopener sponsored">Ver ML</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=500&h=320&fit=crop" alt="Smartphone compacto 5G">
+        <span class="store-tag amz">Amazon</span>
+        <span class="rating-tag">★ 4.6</span>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Compacto 5G</div>
+        <div class="card-title">Smartphone Compacto 5G 128GB</div>
+        <div class="card-desc">Formato compacto com conectividade 5G, tela de 6.1" e desempenho premium.</div>
+        <div class="card-price-row">
+          <span class="card-price">R$ 1.999</span>
+          <span class="card-price-old">R$ 2.499</span>
+          <span class="card-discount">-20%</span>
+        </div>
+        <div class="card-actions">
+          <a class="btn btn-amazon" href="https://www.amazon.com.br/s?k=smartphone+compacto+5g&tag=paulo49rs0d-20" target="_blank" rel="noopener sponsored">🛒 Amazon</a>
+          <a class="btn btn-ml" href="https://www.mercadolivre.com.br/ofertas?matt_tool=sipa4126780&q=smartphone+compacto+5g" target="_blank" rel="noopener sponsored">Ver ML</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=500&h=320&fit=crop" alt="Celular bateria longa">
+        <span class="store-tag ml">Mercado Livre</span>
+        <span class="rating-tag">★ 4.4</span>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Bateria 6.000mAh</div>
+        <div class="card-title">Celular 64GB com Bateria de Longa Duração</div>
+        <div class="card-desc">Bateria de 6.000mAh que dura até 2 dias. Ideal para quem usa muito o celular.</div>
+        <div class="card-price-row">
+          <span class="card-price">R$ 899</span>
+          <span class="card-price-old">R$ 1.199</span>
+          <span class="card-discount">-25%</span>
+        </div>
+        <div class="card-actions">
+          <a class="btn btn-amazon" href="https://www.amazon.com.br/s?k=celular+64gb+bateria+longa+duracao&tag=paulo49rs0d-20" target="_blank" rel="noopener sponsored">🛒 Amazon</a>
+          <a class="btn btn-ml" href="https://www.mercadolivre.com.br/ofertas?matt_tool=sipa4126780&q=celular+64gb+bateria+longa+duracao" target="_blank" rel="noopener sponsored">Ver ML</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ===================== CÂMERAS ===================== -->
+<section class="section" id="cameras">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title"><span>📷</span> Ofertas em Câmeras</h2>
+      <p class="section-sub">Das compactas às mirrorless profissionais</p>
+    </div>
+  </div>
+  <div class="product-grid">
+
+    <div class="product-card">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=500&h=320&fit=crop" alt="Câmera Mirrorless 24MP">
+        <span class="store-tag amz">Amazon</span>
+        <span class="rating-tag">★ 4.8</span>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Mirrorless</div>
+        <div class="card-title">Câmera Mirrorless 24MP com Lente 18-55mm</div>
+        <div class="card-desc">Sensor APS-C de 24MP, estabilização de imagem, vídeo 4K e autofoco por detecção de fase.</div>
+        <div class="card-price-row">
+          <span class="card-price">R$ 4.799</span>
+          <span class="card-price-old">R$ 5.699</span>
+          <span class="card-discount">-16%</span>
+        </div>
+        <div class="card-actions">
+          <a class="btn btn-amazon" href="https://www.amazon.com.br/s?k=camera+mirrorless+24mp&tag=paulo49rs0d-20" target="_blank" rel="noopener sponsored">🛒 Amazon</a>
+          <a class="btn btn-ml" href="https://www.mercadolivre.com.br/ofertas?matt_tool=sipa4126780&q=camera+mirrorless+24mp" target="_blank" rel="noopener sponsored">Ver ML</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=500&h=320&fit=crop" alt="Câmera DSLR 32MP">
+        <span class="store-tag amz">Amazon</span>
+        <span class="rating-tag">★ 4.7</span>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">DSLR</div>
+        <div class="card-title">Câmera DSLR 32MP com Kit de Lente</div>
+        <div class="card-desc">Sensor full de 32MP, visor óptico, gravação em 4K/60fps e kit de lentes incluído.</div>
+        <div class="card-price-row">
+          <span class="card-price">R$ 3.999</span>
+          <span class="card-price-old">R$ 4.799</span>
+          <span class="card-discount">-17%</span>
+        </div>
+        <div class="card-actions">
+          <a class="btn btn-amazon" href="https://www.amazon.com.br/s?k=camera+dslr+32mp+kit+lente&tag=paulo49rs0d-20" target="_blank" rel="noopener sponsored">🛒 Amazon</a>
+          <a class="btn btn-ml" href="https://www.mercadolivre.com.br/ofertas?matt_tool=sipa4126780&q=camera+dslr+32mp+kit+lente" target="_blank" rel="noopener sponsored">Ver ML</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1617005082133-548c4dd27f35?w=500&h=320&fit=crop" alt="Câmera compacta 4K Vlog">
+        <span class="store-tag ml">Mercado Livre</span>
+        <span class="rating-tag">★ 4.6</span>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Compacta 4K</div>
+        <div class="card-title">Câmera Compacta 4K para Viagem e Vlog</div>
+        <div class="card-desc">Vídeo 4K, tela articulada para selfie, Wi-Fi e leve o suficiente para levar a qualquer lugar.</div>
+        <div class="card-price-row">
+          <span class="card-price">R$ 2.299</span>
+          <span class="card-price-old">R$ 2.899</span>
+          <span class="card-discount">-21%</span>
+        </div>
+        <div class="card-actions">
+          <a class="btn btn-amazon" href="https://www.amazon.com.br/s?k=camera+compacta+4k+vlog&tag=paulo49rs0d-20" target="_blank" rel="noopener sponsored">🛒 Amazon</a>
+          <a class="btn btn-ml" href="https://www.mercadolivre.com.br/ofertas?matt_tool=sipa4126780&q=camera+compacta+4k+vlog" target="_blank" rel="noopener sponsored">Ver ML</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=500&h=320&fit=crop" alt="Action Cam 5K à Prova d'Água">
+        <span class="store-tag ml">Mercado Livre</span>
+        <span class="rating-tag">★ 4.9</span>
+      </div>
+      <div class="card-body">
+        <div class="card-brand">Action Cam</div>
+        <div class="card-title">Action Cam 5.3K à Prova d'Água</div>
+        <div class="card-desc">Filmagem em 5.3K, à prova d'água até 10m, estabilização HyperSmooth e tela touch.</div>
+        <div class="card-price-row">
+          <span class="card-price">R$ 1.899</span>
+          <span class="card-price-old">R$ 2.399</span>
+          <span class="card-discount">-21%</span>
+        </div>
+        <div class="card-actions">
+          <a class="btn btn-amazon" href="https://www.amazon.com.br/s?k=action+cam+5k+prova+dagua&tag=paulo49rs0d-20" target="_blank" rel="noopener sponsored">🛒 Amazon</a>
+          <a class="btn btn-ml" href="https://www.mercadolivre.com.br/ofertas?matt_tool=sipa4126780&q=action+cam+5k+prova+dagua" target="_blank" rel="noopener sponsored">Ver ML</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Mega<span>Ofertas</span></div>
+  <p class="footer-disclaimer">
+    Este site participa do Programa de Associados da Amazon e do Programa de Afiliados do Mercado Livre.
+    Podemos receber comissões por compras realizadas através dos links divulgados, sem custo adicional para você.
+    Os preços exibidos são estimativas e podem variar — consulte o preço atual ao clicar em cada oferta.
+  </p>
+  <div class="footer-stores">
+    <span>Parceiros oficiais:</span>
+    <span class="store-pill pill-amz">🛒 Amazon Afiliados · Tag: paulo49rs0d-20</span>
+    <span class="store-pill pill-ml">🟡 Mercado Livre Afiliados · ID: sipa4126780</span>
+  </div>
+</footer>
+
+<script>
+  // Highlight active nav category on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const catBtns = document.querySelectorAll('.cat-btn');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.id;
+    });
+    catBtns.forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('href') === '#' + current);
+    });
+  });
+</script>
+</body>
+</html>
